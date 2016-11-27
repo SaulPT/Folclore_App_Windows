@@ -26,17 +26,10 @@ namespace App_Windows
             RestClient cliente = new RestClient("http://localhost/noticias");
             RestRequest request = new RestRequest(Method.GET);
 
-            /*
-            request.Method = Method.GET;
-            request.AddHeader("Accept", "application/json");
-            */
-
             string json = cliente.Execute(request).Content;
             noticias = JsonConvert.DeserializeObject<List<Noticia>>(json);
 
             listBox_noticias.DataSource = noticias;
-
-            //utilizadores = JsonConvert.DeserializeObject<List<Utilizador>>(json);
         }
 
         private void listBox_noticias_SelectedIndexChanged(object sender, EventArgs e)
