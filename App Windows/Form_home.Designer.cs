@@ -1,6 +1,6 @@
 ﻿namespace App_Windows
 {
-    partial class Form1
+    partial class Form_home
     {
         /// <summary>
         /// Required designer variable.
@@ -28,66 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.button_login = new System.Windows.Forms.Button();
-            this.textBox_username = new System.Windows.Forms.TextBox();
-            this.textBox_password = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.button_noticias = new System.Windows.Forms.Button();
             this.label_conteudo = new System.Windows.Forms.Label();
             this.label_data = new System.Windows.Forms.Label();
             this.label_titulo = new System.Windows.Forms.Label();
             this.listBox_noticias = new System.Windows.Forms.ListBox();
+            this.label_username = new System.Windows.Forms.Label();
+            this.button_login = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(29, 29);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(102, 24);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Username:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(29, 66);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(97, 24);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Password:";
-            // 
-            // button_login
-            // 
-            this.button_login.Location = new System.Drawing.Point(514, 26);
-            this.button_login.Margin = new System.Windows.Forms.Padding(4);
-            this.button_login.Name = "button_login";
-            this.button_login.Size = new System.Drawing.Size(235, 66);
-            this.button_login.TabIndex = 2;
-            this.button_login.Text = "Login";
-            this.button_login.UseVisualStyleBackColor = true;
-            this.button_login.Click += new System.EventHandler(this.button_login_Click);
-            // 
-            // textBox_username
-            // 
-            this.textBox_username.Location = new System.Drawing.Point(139, 26);
-            this.textBox_username.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox_username.Name = "textBox_username";
-            this.textBox_username.Size = new System.Drawing.Size(350, 29);
-            this.textBox_username.TabIndex = 3;
-            // 
-            // textBox_password
-            // 
-            this.textBox_password.Location = new System.Drawing.Point(139, 63);
-            this.textBox_password.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox_password.Name = "textBox_password";
-            this.textBox_password.Size = new System.Drawing.Size(350, 29);
-            this.textBox_password.TabIndex = 4;
             // 
             // groupBox1
             // 
@@ -97,7 +47,9 @@
             this.groupBox1.Controls.Add(this.label_titulo);
             this.groupBox1.Controls.Add(this.listBox_noticias);
             this.groupBox1.Location = new System.Drawing.Point(12, 116);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Size = new System.Drawing.Size(737, 482);
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
@@ -107,8 +59,9 @@
             // 
             this.button_noticias.Enabled = false;
             this.button_noticias.Location = new System.Drawing.Point(21, 35);
+            this.button_noticias.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button_noticias.Name = "button_noticias";
-            this.button_noticias.Size = new System.Drawing.Size(213, 45);
+            this.button_noticias.Size = new System.Drawing.Size(213, 44);
             this.button_noticias.TabIndex = 8;
             this.button_noticias.Text = "Mostrar";
             this.button_noticias.UseVisualStyleBackColor = true;
@@ -151,28 +104,49 @@
             this.listBox_noticias.FormattingEnabled = true;
             this.listBox_noticias.ItemHeight = 24;
             this.listBox_noticias.Location = new System.Drawing.Point(21, 97);
+            this.listBox_noticias.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBox_noticias.Name = "listBox_noticias";
             this.listBox_noticias.Size = new System.Drawing.Size(213, 364);
             this.listBox_noticias.TabIndex = 0;
             this.listBox_noticias.SelectedIndexChanged += new System.EventHandler(this.listBox_noticias_SelectedIndexChanged);
             // 
-            // Form1
+            // label_username
+            // 
+            this.label_username.AutoSize = true;
+            this.label_username.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8806F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label_username.Location = new System.Drawing.Point(26, 34);
+            this.label_username.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label_username.Name = "label_username";
+            this.label_username.Size = new System.Drawing.Size(213, 44);
+            this.label_username.TabIndex = 7;
+            this.label_username.Text = "Utilizador: ";
+            // 
+            // button_login
+            // 
+            this.button_login.Location = new System.Drawing.Point(536, 34);
+            this.button_login.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_login.Name = "button_login";
+            this.button_login.Size = new System.Drawing.Size(213, 42);
+            this.button_login.TabIndex = 9;
+            this.button_login.TabStop = false;
+            this.button_login.Text = "login";
+            this.button_login.UseVisualStyleBackColor = true;
+            this.button_login.Click += new System.EventHandler(this.button_login_Click);
+            // 
+            // Form_home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(766, 610);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.textBox_password);
-            this.Controls.Add(this.textBox_username);
             this.Controls.Add(this.button_login);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.label_username);
+            this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.20895F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "Form_home";
+            this.Text = "Home";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -181,18 +155,14 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button button_login;
-        private System.Windows.Forms.TextBox textBox_username;
-        private System.Windows.Forms.TextBox textBox_password;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label_conteudo;
         private System.Windows.Forms.Label label_data;
         private System.Windows.Forms.Label label_titulo;
         private System.Windows.Forms.ListBox listBox_noticias;
         private System.Windows.Forms.Button button_noticias;
+        private System.Windows.Forms.Label label_username;
+        private System.Windows.Forms.Button button_login;
     }
 }
 
