@@ -28,44 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.button_noticias = new System.Windows.Forms.Button();
+            this.groupBox_notcias = new System.Windows.Forms.GroupBox();
             this.label_conteudo = new System.Windows.Forms.Label();
             this.label_data = new System.Windows.Forms.Label();
             this.label_titulo = new System.Windows.Forms.Label();
             this.listBox_noticias = new System.Windows.Forms.ListBox();
             this.label_username = new System.Windows.Forms.Label();
             this.button_login = new System.Windows.Forms.Button();
-            this.groupBox1.SuspendLayout();
+            this.Notícias = new System.Windows.Forms.MenuStrip();
+            this.menu_refresh = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_area_pessoal = new System.Windows.Forms.ToolStripMenuItem();
+            this.groupBox_notcias.SuspendLayout();
+            this.Notícias.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // groupBox_notcias
             // 
-            this.groupBox1.Controls.Add(this.button_noticias);
-            this.groupBox1.Controls.Add(this.label_conteudo);
-            this.groupBox1.Controls.Add(this.label_data);
-            this.groupBox1.Controls.Add(this.label_titulo);
-            this.groupBox1.Controls.Add(this.listBox_noticias);
-            this.groupBox1.Location = new System.Drawing.Point(12, 116);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(737, 482);
-            this.groupBox1.TabIndex = 5;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Notícias";
-            // 
-            // button_noticias
-            // 
-            this.button_noticias.Enabled = false;
-            this.button_noticias.Location = new System.Drawing.Point(21, 35);
-            this.button_noticias.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button_noticias.Name = "button_noticias";
-            this.button_noticias.Size = new System.Drawing.Size(213, 44);
-            this.button_noticias.TabIndex = 8;
-            this.button_noticias.Text = "Mostrar";
-            this.button_noticias.UseVisualStyleBackColor = true;
-            this.button_noticias.Click += new System.EventHandler(this.button_noticias_Click);
+            this.groupBox_notcias.Controls.Add(this.label_conteudo);
+            this.groupBox_notcias.Controls.Add(this.label_data);
+            this.groupBox_notcias.Controls.Add(this.label_titulo);
+            this.groupBox_notcias.Controls.Add(this.listBox_noticias);
+            this.groupBox_notcias.Location = new System.Drawing.Point(14, 115);
+            this.groupBox_notcias.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox_notcias.Name = "groupBox_notcias";
+            this.groupBox_notcias.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.groupBox_notcias.Size = new System.Drawing.Size(737, 493);
+            this.groupBox_notcias.TabIndex = 5;
+            this.groupBox_notcias.TabStop = false;
+            this.groupBox_notcias.Text = "Notícias";
             // 
             // label_conteudo
             // 
@@ -103,10 +93,10 @@
             // 
             this.listBox_noticias.FormattingEnabled = true;
             this.listBox_noticias.ItemHeight = 24;
-            this.listBox_noticias.Location = new System.Drawing.Point(21, 97);
+            this.listBox_noticias.Location = new System.Drawing.Point(21, 38);
             this.listBox_noticias.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listBox_noticias.Name = "listBox_noticias";
-            this.listBox_noticias.Size = new System.Drawing.Size(213, 364);
+            this.listBox_noticias.Size = new System.Drawing.Size(213, 436);
             this.listBox_noticias.TabIndex = 0;
             this.listBox_noticias.SelectedIndexChanged += new System.EventHandler(this.listBox_noticias_SelectedIndexChanged);
             // 
@@ -114,7 +104,7 @@
             // 
             this.label_username.AutoSize = true;
             this.label_username.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8806F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label_username.Location = new System.Drawing.Point(26, 34);
+            this.label_username.Location = new System.Drawing.Point(28, 52);
             this.label_username.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label_username.Name = "label_username";
             this.label_username.Size = new System.Drawing.Size(213, 44);
@@ -123,7 +113,7 @@
             // 
             // button_login
             // 
-            this.button_login.Location = new System.Drawing.Point(536, 34);
+            this.button_login.Location = new System.Drawing.Point(538, 52);
             this.button_login.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button_login.Name = "button_login";
             this.button_login.Size = new System.Drawing.Size(213, 42);
@@ -133,36 +123,70 @@
             this.button_login.UseVisualStyleBackColor = true;
             this.button_login.Click += new System.EventHandler(this.button_login_Click);
             // 
+            // Notícias
+            // 
+            this.Notícias.Font = new System.Drawing.Font("Segoe UI", 10.20895F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Notícias.ImageScalingSize = new System.Drawing.Size(22, 22);
+            this.Notícias.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menu_refresh,
+            this.menu_area_pessoal});
+            this.Notícias.Location = new System.Drawing.Point(0, 0);
+            this.Notícias.Name = "Notícias";
+            this.Notícias.Size = new System.Drawing.Size(768, 33);
+            this.Notícias.TabIndex = 10;
+            this.Notícias.Text = "menuStrip1";
+            // 
+            // menu_refresh
+            // 
+            this.menu_refresh.Image = global::App_Windows.Properties.Resources._5651_200;
+            this.menu_refresh.Name = "menu_refresh";
+            this.menu_refresh.Size = new System.Drawing.Size(34, 29);
+            this.menu_refresh.Click += new System.EventHandler(this.menu_refresh_Click);
+            // 
+            // menu_area_pessoal
+            // 
+            this.menu_area_pessoal.Enabled = false;
+            this.menu_area_pessoal.Name = "menu_area_pessoal";
+            this.menu_area_pessoal.Size = new System.Drawing.Size(130, 29);
+            this.menu_area_pessoal.Text = "Área Pessoal";
+            // 
             // Form_home
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(766, 610);
+            this.ClientSize = new System.Drawing.Size(768, 626);
             this.Controls.Add(this.button_login);
             this.Controls.Add(this.label_username);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBox_notcias);
+            this.Controls.Add(this.Notícias);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.20895F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MainMenuStrip = this.Notícias;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "Form_home";
             this.Text = "Home";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.Shown += new System.EventHandler(this.Form_home_Shown);
+            this.groupBox_notcias.ResumeLayout(false);
+            this.groupBox_notcias.PerformLayout();
+            this.Notícias.ResumeLayout(false);
+            this.Notícias.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBox_notcias;
         private System.Windows.Forms.Label label_conteudo;
         private System.Windows.Forms.Label label_data;
         private System.Windows.Forms.Label label_titulo;
         private System.Windows.Forms.ListBox listBox_noticias;
-        private System.Windows.Forms.Button button_noticias;
         private System.Windows.Forms.Label label_username;
         private System.Windows.Forms.Button button_login;
+        private System.Windows.Forms.MenuStrip Notícias;
+        private System.Windows.Forms.ToolStripMenuItem menu_area_pessoal;
+        private System.Windows.Forms.ToolStripMenuItem menu_refresh;
     }
 }
 

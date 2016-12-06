@@ -16,7 +16,7 @@ namespace App_Windows
         {
             button_login.Enabled = false;
 
-            RestClient cliente = new RestClient("http://localhost/API_Projeto/api/user/login");
+            RestClient cliente = new RestClient("http://localhost/Folclore_API/api/user/login");
             RestRequest request = new RestRequest(Method.GET);
 
             request.AddHeader("username", textBox_username.Text);
@@ -24,6 +24,13 @@ namespace App_Windows
             request.AddHeader("dispositivo", "Windows");
 
             IRestResponse resposta = cliente.Execute(request);
+
+
+            Form_home form_inicial = (Form_home)Application.OpenForms[0];
+
+            //LOG////////////////////////////////
+            form_inicial.log(cliente.BaseUrl,request.Method,request.Parameters);
+            /////////////////////////////////////
 
             if (resposta.ErrorException != null)
             {
@@ -41,10 +48,10 @@ namespace App_Windows
                 {
                     string recebido = resposta.Content;
                     string token = JObject.Parse(recebido).Property("token").Value.ToString();
-                    
-                    
-                    ((Form_home)Application.OpenForms[0]).token = token;
-                    ((Form_home)Application.OpenForms[0]).update_ui(true,"logout",textBox_username.Text);
+
+                    form_inicial.token = token;
+                    form_inicial.update_ui(true,"logout",textBox_username.Text);
+
                     this.Close();
                 }
             }
