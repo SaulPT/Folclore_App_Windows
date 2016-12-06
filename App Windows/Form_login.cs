@@ -28,17 +28,25 @@ namespace App_Windows
 
             Form_home form_inicial = (Form_home)Application.OpenForms[0];
 
-            //LOG////////////////////////////////
+            //LOG
             form_inicial.log("Login",cliente.BaseUrl.ToString(),request.Method.ToString(),request.Parameters,null);
-            /////////////////////////////////////
+            //
 
             if (resposta.ErrorException != null)
             {
                 MessageBox.Show(resposta.ErrorMessage, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 button_login.Enabled = true;
+
+                //LOG
+                form_inicial.log("ERRO", resposta.ErrorMessage, resposta.ErrorException.HResult.ToString(), null, null);
+                //
             }
             else
             {
+                //LOG
+                form_inicial.log("Resposta", resposta.StatusDescription, ((int)resposta.StatusCode).ToString(), resposta.Headers, resposta.Content);
+                //
+
                 if (resposta.StatusCode != System.Net.HttpStatusCode.OK)
                 {
                     MessageBox.Show(resposta.StatusDescription, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
