@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using RestSharp;
 using Newtonsoft.Json;
 using System.IO;
+using System.Net;
 
 namespace App_Windows
 {
@@ -57,7 +58,7 @@ namespace App_Windows
             IRestResponse resposta = cliente.Execute(request);
 
             //LOG
-            log(cliente.BaseUrl,request.Method,request.Parameters);
+            log("Pedido",cliente.BaseUrl.ToString(),request.Method.ToString(),request.Parameters,null);
             //
 
             if (resposta.ErrorException == null)
@@ -65,10 +66,18 @@ namespace App_Windows
                 string json = cliente.Execute(request).Content;
                 noticias = JsonConvert.DeserializeObject<List<Noticia>>(json);
                 listBox_noticias.DataSource = noticias;
+
+                //LOG
+                log("Resposta", resposta.StatusDescription, ((int)resposta.StatusCode).ToString(), resposta.Headers, resposta.Content);
+                //
             }
             else
             {
-                MessageBox.Show(cliente.Execute(request).ErrorMessage, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(resposta.ErrorMessage, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                //LOG
+                log("ERRO", resposta.ErrorMessage, resposta.ErrorException.HResult.ToString(), null, null);
+                //
             }
         }
 
@@ -77,35 +86,39 @@ namespace App_Windows
             this.OnShown(e);
         }
 
-        public void log(Uri url, Method metodo, List<Parameter> parametros)
+        public void log(string comunicacao,string url_resposta, string metodo_codigo, IList<Parameter> parametros, string body)
         {
             string headers = null;
-            string body = null;
-            foreach (Parameter item in parametros)
+            if (parametros != null)
             {
-                if (item.Type == ParameterType.HttpHeader)
+                foreach (Parameter item in parametros)
                 {
-                    headers += "\r\n\t\t\t" + item.Name + ": " + item.Value;
-                }
-                else if (item.Type == ParameterType.RequestBody)
-                {
-                    body = item.Value.ToString();
+                    if (item.Type == ParameterType.HttpHeader)
+                    {
+                        headers += "\r\n\t\t\t" + item.Name + ": " + item.Value;
+                    }
+                    else if (item.Type == ParameterType.RequestBody)
+                    {
+                        body = item.Value.ToString();
+                    }
                 }
             }
 
-            string linha = "[" + DateTime.Now + "] " + "Pedido para '" + url + "' (" + metodo + "):";
+            string linha = "[" + DateTime.Now + "] " + comunicacao + "--> '" + url_resposta + "' (" + metodo_codigo + "):";
             if (headers != null)
             {
                 linha += "\r\n\t\t\t--> headers:" + headers;
             }
             if (body != null)
             {
-                linha += "\r\n\t\t\t--> body:" + body;
+                linha += "\r\n\t\t\t--> body:\r\n\t\t\t" + body;
             }
 
             StreamWriter escrever = new StreamWriter(Application.StartupPath + "\\log.txt", true);
             escrever.WriteLine(linha);
             escrever.Close();
         }
+
+        
     }
 }

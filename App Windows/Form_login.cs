@@ -29,7 +29,7 @@ namespace App_Windows
             Form_home form_inicial = (Form_home)Application.OpenForms[0];
 
             //LOG////////////////////////////////
-            form_inicial.log(cliente.BaseUrl,request.Method,request.Parameters);
+            form_inicial.log("Login",cliente.BaseUrl.ToString(),request.Method.ToString(),request.Parameters,null);
             /////////////////////////////////////
 
             if (resposta.ErrorException != null)
