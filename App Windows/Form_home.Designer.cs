@@ -36,8 +36,8 @@
             this.label_username = new System.Windows.Forms.Label();
             this.button_login = new System.Windows.Forms.Button();
             this.Notícias = new System.Windows.Forms.MenuStrip();
-            this.menu_refresh = new System.Windows.Forms.ToolStripMenuItem();
             this.menu_area_pessoal = new System.Windows.Forms.ToolStripMenuItem();
+            this.menu_refresh = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox_notcias.SuspendLayout();
             this.Notícias.SuspendLayout();
             this.SuspendLayout();
@@ -136,19 +136,20 @@
             this.Notícias.TabIndex = 10;
             this.Notícias.Text = "menuStrip1";
             // 
-            // menu_refresh
-            // 
-            this.menu_refresh.Image = global::App_Windows.Properties.Resources._5651_200;
-            this.menu_refresh.Name = "menu_refresh";
-            this.menu_refresh.Size = new System.Drawing.Size(34, 29);
-            this.menu_refresh.Click += new System.EventHandler(this.menu_refresh_Click);
-            // 
             // menu_area_pessoal
             // 
             this.menu_area_pessoal.Enabled = false;
             this.menu_area_pessoal.Name = "menu_area_pessoal";
             this.menu_area_pessoal.Size = new System.Drawing.Size(130, 29);
             this.menu_area_pessoal.Text = "Área Pessoal";
+            this.menu_area_pessoal.Click += new System.EventHandler(this.menu_area_pessoal_Click);
+            // 
+            // menu_refresh
+            // 
+            this.menu_refresh.Image = global::App_Windows.Properties.Resources._5651_200;
+            this.menu_refresh.Name = "menu_refresh";
+            this.menu_refresh.Size = new System.Drawing.Size(34, 29);
+            this.menu_refresh.Click += new System.EventHandler(this.menu_refresh_Click);
             // 
             // Form_home
             // 

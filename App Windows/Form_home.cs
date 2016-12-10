@@ -10,7 +10,7 @@ namespace App_Windows
 {
     public partial class Form_home : Form
     {
-        public string token;
+        public string token,username;
         private List<Noticia> noticias;
 
         public Form_home()
@@ -37,17 +37,24 @@ namespace App_Windows
             }
             else
             {
-                label_username.Text = "Utilizador: ";
-                button_login.Text = "login";
-                menu_area_pessoal.Enabled = false;
+                update_ui(false);
             }
         }
 
-        public void update_ui(bool estado_botao_menu,string texto_botao_login, string texto_username)
+        public void update_ui(bool estado_login)
         {
-            menu_area_pessoal.Enabled = estado_botao_menu;
-            button_login.Text = texto_botao_login;
-            label_username.Text = "Utilizador: " + texto_username;
+            if (estado_login)
+            {
+                menu_area_pessoal.Enabled = true;
+                button_login.Text = "logout";
+                label_username.Text = "Utilizador: " + username;
+            }
+            else
+            {
+                menu_area_pessoal.Enabled = false;
+                button_login.Text = "login";
+                label_username.Text = "Utilizador: ";
+            }
         }
 
         private void Form_home_Shown(object sender, EventArgs e)
@@ -58,17 +65,17 @@ namespace App_Windows
             IRestResponse resposta = cliente.Execute(request);
 
             //LOG
-            log("Pedido",cliente.BaseUrl.ToString(),request.Method.ToString(),request.Parameters,null);
+            Log.escrever("Pedido",cliente.BaseUrl.ToString(),request.Method.ToString(),request.Parameters,null);
             //
 
             if (resposta.ErrorException == null)
             {
-                string json = cliente.Execute(request).Content;
+                string json = resposta.Content;
                 noticias = JsonConvert.DeserializeObject<List<Noticia>>(json);
                 listBox_noticias.DataSource = noticias;
 
                 //LOG
-                log("Resposta", resposta.StatusDescription, ((int)resposta.StatusCode).ToString(), resposta.Headers, resposta.Content);
+                Log.escrever("Resposta", resposta.StatusDescription, ((int)resposta.StatusCode).ToString(), resposta.Headers, resposta.Content);
                 //
             }
             else
@@ -76,7 +83,7 @@ namespace App_Windows
                 MessageBox.Show(resposta.ErrorMessage, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
                 //LOG
-                log("ERRO", resposta.ErrorMessage, resposta.ErrorException.HResult.ToString(), null, null);
+                Log.escrever("ERRO", resposta.ErrorMessage, resposta.ErrorException.HResult.ToString(), null, null);
                 //
             }
         }
@@ -86,39 +93,9 @@ namespace App_Windows
             this.OnShown(e);
         }
 
-        public void log(string comunicacao,string url_resposta, string metodo_codigo, IList<Parameter> parametros, string body)
+        private void menu_area_pessoal_Click(object sender, EventArgs e)
         {
-            string headers = null;
-            if (parametros != null)
-            {
-                foreach (Parameter item in parametros)
-                {
-                    if (item.Type == ParameterType.HttpHeader)
-                    {
-                        headers += "\r\n\t\t\t" + item.Name + ": " + item.Value;
-                    }
-                    else if (item.Type == ParameterType.RequestBody)
-                    {
-                        body = item.Value.ToString();
-                    }
-                }
-            }
-
-            string linha = "[" + DateTime.Now + "] " + comunicacao + "--> '" + url_resposta + "' (" + metodo_codigo + "):";
-            if (headers != null)
-            {
-                linha += "\r\n\t\t\t--> headers:" + headers;
-            }
-            if (body != null)
-            {
-                linha += "\r\n\t\t\t--> body:\r\n\t\t\t" + body;
-            }
-
-            StreamWriter escrever = new StreamWriter(Application.StartupPath + "\\log.txt", true);
-            escrever.WriteLine(linha);
-            escrever.Close();
+            new Form_area_pessoal(username,token).ShowDialog()
         }
-
-        
     }
 }

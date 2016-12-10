@@ -29,7 +29,7 @@ namespace App_Windows
             Form_home form_inicial = (Form_home)Application.OpenForms[0];
 
             //LOG
-            form_inicial.log("Login",cliente.BaseUrl.ToString(),request.Method.ToString(),request.Parameters,null);
+            Log.escrever("Login",cliente.BaseUrl.ToString(),request.Method.ToString(),request.Parameters,null);
             //
 
             if (resposta.ErrorException != null)
@@ -38,13 +38,13 @@ namespace App_Windows
                 button_login.Enabled = true;
 
                 //LOG
-                form_inicial.log("ERRO", resposta.ErrorMessage, resposta.ErrorException.HResult.ToString(), null, null);
+                Log.escrever("ERRO", resposta.ErrorMessage, resposta.ErrorException.HResult.ToString(), null, null);
                 //
             }
             else
             {
                 //LOG
-                form_inicial.log("Resposta", resposta.StatusDescription, ((int)resposta.StatusCode).ToString(), resposta.Headers, resposta.Content);
+                Log.escrever("Resposta", resposta.StatusDescription, ((int)resposta.StatusCode).ToString(), resposta.Headers, resposta.Content);
                 //
 
                 if (resposta.StatusCode != System.Net.HttpStatusCode.OK)
@@ -54,11 +54,12 @@ namespace App_Windows
                 }
                 else
                 {
-                    string recebido = resposta.Content;
-                    string token = JObject.Parse(recebido).Property("token").Value.ToString();
+                    string token = JObject.Parse(resposta.Content).Property("token").Value.ToString();
+                    string username = JObject.Parse(resposta.Content).Property("username").Value.ToString();
 
                     form_inicial.token = token;
-                    form_inicial.update_ui(true,"logout",textBox_username.Text);
+                    form_inicial.username = username;
+                    form_inicial.update_ui(true);
 
                     this.Close();
                 }
