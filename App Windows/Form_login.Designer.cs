@@ -41,7 +41,8 @@
             this.textBox_password.Margin = new System.Windows.Forms.Padding(6);
             this.textBox_password.Name = "textBox_password";
             this.textBox_password.Size = new System.Drawing.Size(328, 29);
-            this.textBox_password.TabIndex = 9;
+            this.textBox_password.TabIndex = 2;
+            this.textBox_password.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_password_KeyDown);
             // 
             // textBox_username
             // 
@@ -49,7 +50,8 @@
             this.textBox_username.Margin = new System.Windows.Forms.Padding(6);
             this.textBox_username.Name = "textBox_username";
             this.textBox_username.Size = new System.Drawing.Size(328, 29);
-            this.textBox_username.TabIndex = 8;
+            this.textBox_username.TabIndex = 1;
+            this.textBox_username.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBox_username_KeyDown);
             // 
             // button_login
             // 

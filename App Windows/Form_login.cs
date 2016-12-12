@@ -23,15 +23,12 @@ namespace App_Windows
             request.AddHeader("password", textBox_password.Text);
             request.AddHeader("dispositivo", "Windows");
 
-            IRestResponse resposta = cliente.Execute(request);
-
-
-            Form_home form_inicial = (Form_home)Application.OpenForms[0];
-
             //LOG
-            Log.escrever("Login",cliente.BaseUrl.ToString(),request.Method.ToString(),request.Parameters,null);
+            Log.escrever("Login", cliente.BaseUrl.ToString(), request.Method.ToString(), request.Parameters, null);
             //
 
+            IRestResponse resposta = cliente.Execute(request);
+            
             if (resposta.ErrorException != null)
             {
                 MessageBox.Show(resposta.ErrorMessage, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -57,12 +54,40 @@ namespace App_Windows
                     string token = JObject.Parse(resposta.Content).Property("token").Value.ToString();
                     string username = JObject.Parse(resposta.Content).Property("username").Value.ToString();
 
+                    Form_home form_inicial = (Form_home)Application.OpenForms[0];
                     form_inicial.token = token;
                     form_inicial.username = username;
-                    form_inicial.update_ui(true);
+                    form_inicial.menu_terminar_sessao.Visible = true;
 
+                    this.Visible = false;
                     this.Close();
+
+                    form_inicial.abrir_area_pessoal();
                 }
+            }
+        }
+
+        private void textBox_username_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button_login_Click(sender, e);
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
+
+        private void textBox_password_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                button_login_Click(sender, e);
+            }
+            else if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
             }
         }
     }
