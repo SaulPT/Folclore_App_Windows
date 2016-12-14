@@ -37,6 +37,7 @@
             this.label = new System.Windows.Forms.Label();
             this.label_username = new System.Windows.Forms.Label();
             this.button_editar_username = new System.Windows.Forms.Button();
+            this.button_refresh = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -98,7 +99,7 @@
             // 
             // button_logout
             // 
-            this.button_logout.Location = new System.Drawing.Point(15, 66);
+            this.button_logout.Location = new System.Drawing.Point(85, 65);
             this.button_logout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button_logout.Name = "button_logout";
             this.button_logout.Size = new System.Drawing.Size(148, 45);
@@ -131,7 +132,7 @@
             // 
             // button_editar_username
             // 
-            this.button_editar_username.Location = new System.Drawing.Point(179, 66);
+            this.button_editar_username.Location = new System.Drawing.Point(249, 65);
             this.button_editar_username.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button_editar_username.Name = "button_editar_username";
             this.button_editar_username.Size = new System.Drawing.Size(148, 45);
@@ -140,11 +141,25 @@
             this.button_editar_username.Text = "Editar";
             this.button_editar_username.UseVisualStyleBackColor = true;
             // 
+            // button_refresh
+            // 
+            this.button_refresh.BackgroundImage = global::App_Windows.Properties.Resources._5651_200;
+            this.button_refresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button_refresh.Location = new System.Drawing.Point(18, 65);
+            this.button_refresh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button_refresh.Name = "button_refresh";
+            this.button_refresh.Size = new System.Drawing.Size(45, 45);
+            this.button_refresh.TabIndex = 21;
+            this.button_refresh.TabStop = false;
+            this.button_refresh.UseVisualStyleBackColor = true;
+            this.button_refresh.Click += new System.EventHandler(this.button_refresh_Click);
+            // 
             // Form_area_pessoal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(745, 603);
+            this.Controls.Add(this.button_refresh);
             this.Controls.Add(this.button_editar_username);
             this.Controls.Add(this.label_username);
             this.Controls.Add(this.label);
@@ -175,5 +190,6 @@
         private System.Windows.Forms.Label label;
         private System.Windows.Forms.Label label_username;
         private System.Windows.Forms.Button button_editar_username;
+        private System.Windows.Forms.Button button_refresh;
     }
 }

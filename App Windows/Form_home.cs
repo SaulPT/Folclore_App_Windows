@@ -10,8 +10,13 @@ namespace App_Windows
 {
     public partial class Form_home : Form
     {
-        public string token= "9b02180e3d5356f31c33ae840d8ddb315969fbdfebc25c97ccb87a25320389ba",username="saulpt";
+        public static string API_URL = "http://localhost/FolcloreOnline/api";
+
+        public string token, username;
         private List<Noticia> noticias;
+        RestClient cliente;
+        RestRequest pedido;
+        IRestResponse resposta;
 
         public Form_home()
         {
@@ -32,35 +37,26 @@ namespace App_Windows
 
         private void Form_home_Shown(object sender, EventArgs e)
         {
-            RestClient cliente = new RestClient("http://localhost/Folclore_API/api/noticias");
-            RestRequest pedido = new RestRequest(Method.GET);
-
-            //LOG
+            cliente = new RestClient(API_URL+"/noticias");
+            pedido = new RestRequest(Method.GET);
+            
             Log.escrever("Pedido", cliente.BaseUrl.ToString(), pedido.Method.ToString(), pedido.Parameters, null);
-            //
 
-            IRestResponse resposta = cliente.Execute(pedido);
+            resposta = cliente.Execute(pedido);
             
             if (resposta.ErrorException != null)
             {
                 MessageBox.Show(resposta.ErrorMessage, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                //LOG
                 Log.escrever("ERRO", resposta.ErrorMessage, resposta.ErrorException.HResult.ToString(), null, null);
-                //
             }
             else
             {
                 string json = resposta.Content;
                 noticias = JsonConvert.DeserializeObject<List<Noticia>>(json);
                 listBox_noticias.DataSource = noticias;
-
-                //LOG
                 Log.escrever("Resposta", resposta.StatusDescription, ((int)resposta.StatusCode).ToString(), resposta.Headers, resposta.Content);
-                //
             }
 
-            abrir_area_pessoal();
         }
 
         private void menu_refresh_Click(object sender, EventArgs e)
@@ -82,9 +78,28 @@ namespace App_Windows
 
         public void menu_terminar_sessao_Click(object sender, EventArgs e)
         {
-            token = null;
-            username = null;
-            menu_terminar_sessao.Visible = false;
+            cliente = new RestClient(API_URL + "/user/logout");
+            pedido = new RestRequest(Method.POST);
+
+            pedido.AddHeader("token", token);
+
+            Log.escrever("Pedido", cliente.BaseUrl.ToString(), pedido.Method.ToString(), pedido.Parameters, null);
+
+            resposta = cliente.Execute(pedido);
+
+            if (resposta.ErrorException != null)
+            {
+                MessageBox.Show(resposta.ErrorMessage, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Log.escrever("ERRO", resposta.ErrorMessage, resposta.ErrorException.HResult.ToString(), null, null);
+            }
+            else
+            {
+                token = null;
+                username = null;
+                menu_terminar_sessao.Visible = false;
+                Log.escrever("Resposta", resposta.StatusDescription, ((int)resposta.StatusCode).ToString(), resposta.Headers, resposta.Content);
+            }
+
         }
 
         public void abrir_area_pessoal()

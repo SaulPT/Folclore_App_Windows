@@ -16,33 +16,26 @@ namespace App_Windows
         {
             button_login.Enabled = false;
 
-            RestClient cliente = new RestClient("http://localhost/Folclore_API/api/user/login");
-            RestRequest request = new RestRequest(Method.GET);
+            RestClient cliente = new RestClient(Form_home.API_URL + "/user/login");
+            RestRequest pedido = new RestRequest(Method.POST);
 
-            request.AddHeader("username", textBox_username.Text);
-            request.AddHeader("password", textBox_password.Text);
-            request.AddHeader("dispositivo", "Windows");
-
-            //LOG
-            Log.escrever("Login", cliente.BaseUrl.ToString(), request.Method.ToString(), request.Parameters, null);
-            //
-
-            IRestResponse resposta = cliente.Execute(request);
+            pedido.AddHeader("username", textBox_username.Text);
+            pedido.AddHeader("password", textBox_password.Text);
+            pedido.AddHeader("dispositivo", "Windows");
+            
+            Log.escrever("Pedido", cliente.BaseUrl.ToString(), pedido.Method.ToString(), pedido.Parameters, null);
+            
+            IRestResponse resposta = cliente.Execute(pedido);
             
             if (resposta.ErrorException != null)
             {
                 MessageBox.Show(resposta.ErrorMessage, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 button_login.Enabled = true;
-
-                //LOG
                 Log.escrever("ERRO", resposta.ErrorMessage, resposta.ErrorException.HResult.ToString(), null, null);
-                //
             }
             else
             {
-                //LOG
                 Log.escrever("Resposta", resposta.StatusDescription, ((int)resposta.StatusCode).ToString(), resposta.Headers, resposta.Content);
-                //
 
                 if (resposta.StatusCode != System.Net.HttpStatusCode.OK)
                 {

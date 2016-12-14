@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Concelho.cs" />
     <Compile Include="Form_grupo_informacao.cs">
       <SubType>Form</SubType>
     </Compile>

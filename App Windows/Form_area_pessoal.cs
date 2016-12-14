@@ -14,8 +14,8 @@ namespace App_Windows
 {
     public partial class Form_area_pessoal : Form
     {
-        string username,token;
-        List<Grupo> grupos;
+        private string username,token;
+        private List<Grupo> grupos;
         
         public Form_area_pessoal(string username,string token)
         {
@@ -35,42 +35,40 @@ namespace App_Windows
             this.Close();
         }
 
-        private void Form_area_pessoal_Shown(object sender, EventArgs e)
+        public void Form_area_pessoal_Shown(object sender, EventArgs e)
         {
-            RestClient cliente = new RestClient("http://localhost/Folclore_API/api/user/grupos");
-            RestRequest request = new RestRequest(Method.GET);
+            RestClient cliente = new RestClient(Form_home.API_URL+"/user/grupos");
+            RestRequest pedido = new RestRequest(Method.GET);
 
-            request.AddHeader("token", token);
-
-            //LOG
-            Log.escrever("Login", cliente.BaseUrl.ToString(), request.Method.ToString(), request.Parameters, null);
-            //
-
-            IRestResponse resposta = cliente.Execute(request);
+            pedido.AddHeader("token", token);
+            
+            Log.escrever("Pedido", cliente.BaseUrl.ToString(), pedido.Method.ToString(), pedido.Parameters, null);
+            
+            IRestResponse resposta = cliente.Execute(pedido);
 
             if (resposta.ErrorException != null)
             {
                 MessageBox.Show(resposta.ErrorMessage, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                //LOG
                 Log.escrever("ERRO", resposta.ErrorMessage, resposta.ErrorException.HResult.ToString(), null, null);
-                //
             }
             else
             {
                 string json = resposta.Content;
                 grupos = JsonConvert.DeserializeObject<List<Grupo>>(json);
-                listBox_grupos.DataSource = grupos;
-
-                //LOG
                 Log.escrever("Resposta", resposta.StatusDescription, ((int)resposta.StatusCode).ToString(), resposta.Headers, resposta.Content);
-                //
             }
+
+            listBox_grupos.DataSource = grupos;
+        }
+
+        private void button_refresh_Click(object sender, EventArgs e)
+        {
+            Form_area_pessoal_Shown(sender, e);
         }
 
         private void button_informacao_Click(object sender, EventArgs e)
         {
-            new Form_grupo_informacao(token).ShowDialog();
+            new Form_grupo_informacao(token,(Grupo)listBox_grupos.SelectedItem).ShowDialog();
         }
     }
 }

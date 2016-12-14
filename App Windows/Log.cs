@@ -40,7 +40,7 @@ namespace App_Windows
             }
 
             StreamWriter escrever = new StreamWriter(Application.StartupPath + "\\log.txt", true);
-            escrever.WriteLine(linha);
+            escrever.WriteLine(linha + "\r\n");
             escrever.Close();
         }
     }

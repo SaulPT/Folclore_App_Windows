@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 
 namespace App_Windows
 {
-    public class Grupo
+    class Concelho
     {
-        public int id,concelho_id;
-        public string nome,abreviatura,logo;
-        public DateTime data_criacao;
+        public string nome;
+        public int id,distrito_id;
 
         public override string ToString()
         {
