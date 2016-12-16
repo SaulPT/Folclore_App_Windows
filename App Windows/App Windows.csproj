@@ -55,12 +55,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Concelho.cs" />
-    <Compile Include="Form_grupo_informacao.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form_grupo_informacao.Designer.cs">
-      <DependentUpon>Form_grupo_informacao.cs</DependentUpon>
-    </Compile>
     <Compile Include="Form_home.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -80,13 +74,11 @@
       <DependentUpon>Form_area_pessoal.cs</DependentUpon>
     </Compile>
     <Compile Include="Grupo.cs" />
-    <Compile Include="Log.cs" />
+    <Compile Include="REST.cs" />
+    <Compile Include="Evento.cs" />
     <Compile Include="Noticia.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form_grupo_informacao.resx">
-      <DependentUpon>Form_grupo_informacao.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Form_home.resx">
       <DependentUpon>Form_home.cs</DependentUpon>
     </EmbeddedResource>

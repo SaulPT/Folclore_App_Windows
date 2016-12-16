@@ -16,47 +16,22 @@ namespace App_Windows
         {
             button_login.Enabled = false;
 
-            RestClient cliente = new RestClient(Form_home.API_URL + "/user/login");
-            RestRequest pedido = new RestRequest(Method.POST);
-
-            pedido.AddHeader("username", textBox_username.Text);
-            pedido.AddHeader("password", textBox_password.Text);
-            pedido.AddHeader("dispositivo", "Windows");
-            
-            Log.escrever("Pedido", cliente.BaseUrl.ToString(), pedido.Method.ToString(), pedido.Parameters, null);
-            
-            IRestResponse resposta = cliente.Execute(pedido);
-            
-            if (resposta.ErrorException != null)
+            string token = REST.login(textBox_username.Text, textBox_password.Text);
+            if (token == null)
             {
-                MessageBox.Show(resposta.ErrorMessage, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 button_login.Enabled = true;
-                Log.escrever("ERRO", resposta.ErrorMessage, resposta.ErrorException.HResult.ToString(), null, null);
             }
             else
             {
-                Log.escrever("Resposta", resposta.StatusDescription, ((int)resposta.StatusCode).ToString(), resposta.Headers, resposta.Content);
+                Form_home form_inicial = (Form_home)Application.OpenForms[0];
+                form_inicial.token = token;
+                form_inicial.username = textBox_username.Text;
+                form_inicial.menu_terminar_sessao.Visible = true;
 
-                if (resposta.StatusCode != System.Net.HttpStatusCode.OK)
-                {
-                    MessageBox.Show(resposta.StatusDescription, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    button_login.Enabled = true;
-                }
-                else
-                {
-                    string token = JObject.Parse(resposta.Content).Property("token").Value.ToString();
-                    string username = JObject.Parse(resposta.Content).Property("username").Value.ToString();
+                this.Visible = false;
+                this.Close();
 
-                    Form_home form_inicial = (Form_home)Application.OpenForms[0];
-                    form_inicial.token = token;
-                    form_inicial.username = username;
-                    form_inicial.menu_terminar_sessao.Visible = true;
-
-                    this.Visible = false;
-                    this.Close();
-
-                    form_inicial.abrir_area_pessoal();
-                }
+                form_inicial.abrir_area_pessoal();
             }
         }
 

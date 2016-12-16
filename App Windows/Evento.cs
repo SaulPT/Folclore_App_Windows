@@ -6,16 +6,15 @@ using System.Threading.Tasks;
 
 namespace App_Windows
 {
-    class Noticia
+    class Evento
     {
-        public int id, autor_id;
-        public string titulo, conteudo, imagem;
-        public DateTime data_criacao, data_edicao;
-        public bool ativo;
+        public int id, autor_id, concelho_id, estado;
+        public string nome, descricao, local, imagem;
+        public DateTime data, data_criacao;
 
         public override string ToString()
         {
-            return data_edicao.ToString();
+            return data.ToString();
         }
     }
 }
