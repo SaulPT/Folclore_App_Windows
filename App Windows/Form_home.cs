@@ -4,6 +4,8 @@ using System.Linq;
 using System.Windows.Forms;
 using RestSharp;
 using Newtonsoft.Json;
+using static App_Windows.REST;
+using static App_Windows.MODELOS;
 
 namespace App_Windows
 {
@@ -11,6 +13,7 @@ namespace App_Windows
     {
         public string token, username;
 
+        RestResponse resposta;
         List<Noticia> noticias;
         List<Evento> eventos;
         List<Grupo> grupos;
@@ -36,21 +39,6 @@ namespace App_Windows
 
         private void Form_home_Shown(object sender, EventArgs e)
         {
-            //TESTE
-            username = "saulpt";
-            token = REST.login(username, username);
-            abrir_area_pessoal();
-            
-
-
-
-
-
-
-
-
-
-
             tab_SelectedIndexChanged(sender, e);
         }
 
@@ -65,21 +53,51 @@ namespace App_Windows
             {
                 case 0:
                     //TAB NOTICIAS
-                    noticias = REST.obter_noticias();
-                    listBox_noticias.DataSource = noticias.OrderByDescending(n => n.data_edicao).ToList();
+                    resposta = REST.ligacao_API_resposta("/noticias", Method.GET, null, null);
+                    if (resposta == null)
+                    {
+                        noticias = null;
+                        listBox_noticias.DataSource = null;
+                    }
+                    else
+                    {
+                        noticias = JsonConvert.DeserializeObject<List<Noticia>>(resposta.Content);
+                        listBox_noticias.DataSource = noticias.OrderByDescending(n => n.data_edicao).ToList();
+                    }
                     break;
+
                 case 1:
                     //TAB EVENTOS
-                    eventos = REST.obter_eventos();
-                    listBox_eventos.DataSource = eventos.OrderBy(n => n.data).ToList();
+                    resposta = REST.ligacao_API_resposta("/eventos", Method.GET, null, null);
+
+                    if (resposta == null)
+                    {
+                        eventos = null;
+                        listBox_eventos.DataSource = null;
+                    }
+                    else
+                    {
+                        eventos = JsonConvert.DeserializeObject<List<Evento>>(resposta.Content);
+                        listBox_eventos.DataSource = eventos.OrderBy(n => n.data).ToList();
+                    }
                     break;
+
                 case 2:
                     //TAB GRUPOS
                     concelhos = REST.obter_concelhos();
                     distritos = REST.obter_distritos();
 
-                    grupos = REST.obter_grupos();
-                    listBox_grupos.DataSource = grupos.OrderBy(n => n.nome).ToList();
+                    resposta = REST.ligacao_API_resposta("/grupos", Method.GET, null, null);
+                    if (resposta == null)
+                    {
+                        grupos = null;
+                        listBox_grupos.DataSource = null;
+                    }
+                    else
+                    {
+                        grupos = JsonConvert.DeserializeObject<List<Grupo>>(resposta.Content);
+                        listBox_grupos.DataSource = grupos.OrderBy(n => n.nome).ToList();
+                    }
                     break;
             }
         }
@@ -133,13 +151,17 @@ namespace App_Windows
 
         public void menu_terminar_sessao_Click(object sender, EventArgs e)
         {
-            if (REST.terminar_sessao(token))
+            List<RestHeader> headers = new List<RestHeader>();
+            headers.Add(new RestHeader("token", token));
+
+            RestResponse resposta = ligacao_API_resposta("/user/logout", Method.POST, headers, null);
+
+            if (resposta != null)
             {
                 token = null;
                 username = null;
                 menu_terminar_sessao.Visible = false;
             }
-
         }
     }
 }

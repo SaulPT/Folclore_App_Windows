@@ -33,7 +33,6 @@
             this.button_logout = new System.Windows.Forms.Button();
             this.label = new System.Windows.Forms.Label();
             this.label_username = new System.Windows.Forms.Label();
-            this.button_editar_username = new System.Windows.Forms.Button();
             this.button_refresh = new System.Windows.Forms.Button();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tab_informacao = new System.Windows.Forms.TabPage();
@@ -48,12 +47,11 @@
             this.label_concelho = new System.Windows.Forms.Label();
             this.label_nome = new System.Windows.Forms.Label();
             this.tab_eventos = new System.Windows.Forms.TabPage();
-            this.listBox_grupo_eventos = new System.Windows.Forms.ListBox();
-            this.tab_historial = new System.Windows.Forms.TabPage();
-            this.button_grupo_evento_concluido = new System.Windows.Forms.Button();
-            this.button_grupo_evento_editar = new System.Windows.Forms.Button();
-            this.button_grupo_evento_eliminar = new System.Windows.Forms.Button();
-            this.button_grupo_evento_adicionar = new System.Windows.Forms.Button();
+            this.textBox_grupo_evento_local = new System.Windows.Forms.TextBox();
+            this.dateTimePicker_grupo_evento_data = new System.Windows.Forms.DateTimePicker();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.textBox_grupo_evento_descricao = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.comboBox_grupo_evento_concelho = new System.Windows.Forms.ComboBox();
@@ -61,15 +59,20 @@
             this.textBox_grupo_evento_nome = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.dateTimePicker_grupo_evento_data = new System.Windows.Forms.DateTimePicker();
-            this.textBox_grupo_evento_local = new System.Windows.Forms.TextBox();
+            this.button_grupo_evento_adicionar = new System.Windows.Forms.Button();
+            this.button_grupo_evento_eliminar = new System.Windows.Forms.Button();
+            this.button_grupo_evento_concluido = new System.Windows.Forms.Button();
+            this.button_grupo_evento_editar = new System.Windows.Forms.Button();
+            this.listBox_grupo_eventos = new System.Windows.Forms.ListBox();
+            this.tab_historial = new System.Windows.Forms.TabPage();
+            this.button_grupo_historial_editar = new System.Windows.Forms.Button();
+            this.button_grupo_historial_eliminar = new System.Windows.Forms.Button();
+            this.textBox_grupo_historial = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.tabControl.SuspendLayout();
             this.tab_informacao.SuspendLayout();
             this.tab_eventos.SuspendLayout();
+            this.tab_historial.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBox_grupos
@@ -97,7 +100,7 @@
             // 
             // button_logout
             // 
-            this.button_logout.Location = new System.Drawing.Point(85, 65);
+            this.button_logout.Location = new System.Drawing.Point(170, 65);
             this.button_logout.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.button_logout.Name = "button_logout";
             this.button_logout.Size = new System.Drawing.Size(148, 45);
@@ -127,17 +130,6 @@
             this.label_username.Name = "label_username";
             this.label_username.Size = new System.Drawing.Size(0, 33);
             this.label_username.TabIndex = 19;
-            // 
-            // button_editar_username
-            // 
-            this.button_editar_username.Location = new System.Drawing.Point(249, 65);
-            this.button_editar_username.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button_editar_username.Name = "button_editar_username";
-            this.button_editar_username.Size = new System.Drawing.Size(148, 45);
-            this.button_editar_username.TabIndex = 20;
-            this.button_editar_username.TabStop = false;
-            this.button_editar_username.Text = "Editar";
-            this.button_editar_username.UseVisualStyleBackColor = true;
             // 
             // button_refresh
             // 
@@ -306,70 +298,48 @@
             this.tab_eventos.Text = "Eventos";
             this.tab_eventos.UseVisualStyleBackColor = true;
             // 
-            // listBox_grupo_eventos
+            // textBox_grupo_evento_local
             // 
-            this.listBox_grupo_eventos.FormattingEnabled = true;
-            this.listBox_grupo_eventos.ItemHeight = 24;
-            this.listBox_grupo_eventos.Location = new System.Drawing.Point(33, 26);
-            this.listBox_grupo_eventos.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.listBox_grupo_eventos.Name = "listBox_grupo_eventos";
-            this.listBox_grupo_eventos.Size = new System.Drawing.Size(591, 148);
-            this.listBox_grupo_eventos.TabIndex = 14;
-            this.listBox_grupo_eventos.SelectedIndexChanged += new System.EventHandler(this.listBox_grupo_eventos_SelectedIndexChanged);
+            this.textBox_grupo_evento_local.Enabled = false;
+            this.textBox_grupo_evento_local.Location = new System.Drawing.Point(148, 358);
+            this.textBox_grupo_evento_local.Name = "textBox_grupo_evento_local";
+            this.textBox_grupo_evento_local.Size = new System.Drawing.Size(470, 29);
+            this.textBox_grupo_evento_local.TabIndex = 55;
             // 
-            // tab_historial
+            // dateTimePicker_grupo_evento_data
             // 
-            this.tab_historial.Location = new System.Drawing.Point(4, 33);
-            this.tab_historial.Name = "tab_historial";
-            this.tab_historial.Padding = new System.Windows.Forms.Padding(3);
-            this.tab_historial.Size = new System.Drawing.Size(657, 484);
-            this.tab_historial.TabIndex = 1;
-            this.tab_historial.Text = "Historial";
-            this.tab_historial.UseVisualStyleBackColor = true;
+            this.dateTimePicker_grupo_evento_data.Enabled = false;
+            this.dateTimePicker_grupo_evento_data.Location = new System.Drawing.Point(148, 322);
+            this.dateTimePicker_grupo_evento_data.Name = "dateTimePicker_grupo_evento_data";
+            this.dateTimePicker_grupo_evento_data.Size = new System.Drawing.Size(470, 29);
+            this.dateTimePicker_grupo_evento_data.TabIndex = 54;
             // 
-            // button_grupo_evento_concluido
+            // label6
             // 
-            this.button_grupo_evento_concluido.Enabled = false;
-            this.button_grupo_evento_concluido.Location = new System.Drawing.Point(341, 418);
-            this.button_grupo_evento_concluido.Margin = new System.Windows.Forms.Padding(4);
-            this.button_grupo_evento_concluido.Name = "button_grupo_evento_concluido";
-            this.button_grupo_evento_concluido.Size = new System.Drawing.Size(130, 45);
-            this.button_grupo_evento_concluido.TabIndex = 40;
-            this.button_grupo_evento_concluido.Text = "Concluído";
-            this.button_grupo_evento_concluido.UseVisualStyleBackColor = true;
-            this.button_grupo_evento_concluido.Click += new System.EventHandler(this.button_grupo_evento_concluido_Click);
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(38, 358);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(60, 24);
+            this.label6.TabIndex = 53;
+            this.label6.Text = "Local:";
             // 
-            // button_grupo_evento_editar
+            // label5
             // 
-            this.button_grupo_evento_editar.Location = new System.Drawing.Point(186, 418);
-            this.button_grupo_evento_editar.Margin = new System.Windows.Forms.Padding(4);
-            this.button_grupo_evento_editar.Name = "button_grupo_evento_editar";
-            this.button_grupo_evento_editar.Size = new System.Drawing.Size(130, 45);
-            this.button_grupo_evento_editar.TabIndex = 39;
-            this.button_grupo_evento_editar.Text = "Editar";
-            this.button_grupo_evento_editar.UseVisualStyleBackColor = true;
-            this.button_grupo_evento_editar.Click += new System.EventHandler(this.button_grupo_evento_editar_Click);
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(38, 243);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(94, 24);
+            this.label5.TabIndex = 52;
+            this.label5.Text = "Descrição";
             // 
-            // button_grupo_evento_eliminar
+            // label2
             // 
-            this.button_grupo_evento_eliminar.Location = new System.Drawing.Point(494, 418);
-            this.button_grupo_evento_eliminar.Margin = new System.Windows.Forms.Padding(4);
-            this.button_grupo_evento_eliminar.Name = "button_grupo_evento_eliminar";
-            this.button_grupo_evento_eliminar.Size = new System.Drawing.Size(130, 45);
-            this.button_grupo_evento_eliminar.TabIndex = 41;
-            this.button_grupo_evento_eliminar.Text = "Eliminar";
-            this.button_grupo_evento_eliminar.UseVisualStyleBackColor = true;
-            // 
-            // button_grupo_evento_adicionar
-            // 
-            this.button_grupo_evento_adicionar.Location = new System.Drawing.Point(33, 418);
-            this.button_grupo_evento_adicionar.Margin = new System.Windows.Forms.Padding(4);
-            this.button_grupo_evento_adicionar.Name = "button_grupo_evento_adicionar";
-            this.button_grupo_evento_adicionar.Size = new System.Drawing.Size(130, 45);
-            this.button_grupo_evento_adicionar.TabIndex = 42;
-            this.button_grupo_evento_adicionar.Text = "Adicionar";
-            this.button_grupo_evento_adicionar.UseVisualStyleBackColor = true;
-            this.button_grupo_evento_adicionar.Click += new System.EventHandler(this.button_grupo_evento_adicionar_Click);
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(38, 281);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(70, 24);
+            this.label2.TabIndex = 51;
+            this.label2.Text = "Distrito:";
             // 
             // textBox_grupo_evento_descricao
             // 
@@ -435,47 +405,104 @@
             this.label4.TabIndex = 43;
             this.label4.Text = "Nome:";
             // 
-            // label2
+            // button_grupo_evento_adicionar
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(38, 281);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(70, 24);
-            this.label2.TabIndex = 51;
-            this.label2.Text = "Distrito:";
+            this.button_grupo_evento_adicionar.Location = new System.Drawing.Point(33, 418);
+            this.button_grupo_evento_adicionar.Margin = new System.Windows.Forms.Padding(4);
+            this.button_grupo_evento_adicionar.Name = "button_grupo_evento_adicionar";
+            this.button_grupo_evento_adicionar.Size = new System.Drawing.Size(130, 45);
+            this.button_grupo_evento_adicionar.TabIndex = 42;
+            this.button_grupo_evento_adicionar.Text = "Adicionar";
+            this.button_grupo_evento_adicionar.UseVisualStyleBackColor = true;
+            this.button_grupo_evento_adicionar.Click += new System.EventHandler(this.button_grupo_evento_adicionar_Click);
             // 
-            // label5
+            // button_grupo_evento_eliminar
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(38, 243);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(94, 24);
-            this.label5.TabIndex = 52;
-            this.label5.Text = "Descrição";
+            this.button_grupo_evento_eliminar.Location = new System.Drawing.Point(494, 418);
+            this.button_grupo_evento_eliminar.Margin = new System.Windows.Forms.Padding(4);
+            this.button_grupo_evento_eliminar.Name = "button_grupo_evento_eliminar";
+            this.button_grupo_evento_eliminar.Size = new System.Drawing.Size(130, 45);
+            this.button_grupo_evento_eliminar.TabIndex = 41;
+            this.button_grupo_evento_eliminar.Text = "Eliminar";
+            this.button_grupo_evento_eliminar.UseVisualStyleBackColor = true;
+            this.button_grupo_evento_eliminar.Click += new System.EventHandler(this.button_grupo_evento_eliminar_Click);
             // 
-            // label6
+            // button_grupo_evento_concluido
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(38, 358);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(60, 24);
-            this.label6.TabIndex = 53;
-            this.label6.Text = "Local:";
+            this.button_grupo_evento_concluido.Enabled = false;
+            this.button_grupo_evento_concluido.Location = new System.Drawing.Point(341, 418);
+            this.button_grupo_evento_concluido.Margin = new System.Windows.Forms.Padding(4);
+            this.button_grupo_evento_concluido.Name = "button_grupo_evento_concluido";
+            this.button_grupo_evento_concluido.Size = new System.Drawing.Size(130, 45);
+            this.button_grupo_evento_concluido.TabIndex = 40;
+            this.button_grupo_evento_concluido.Text = "Concluído";
+            this.button_grupo_evento_concluido.UseVisualStyleBackColor = true;
+            this.button_grupo_evento_concluido.Click += new System.EventHandler(this.button_grupo_evento_concluido_Click);
             // 
-            // dateTimePicker_grupo_evento_data
+            // button_grupo_evento_editar
             // 
-            this.dateTimePicker_grupo_evento_data.Location = new System.Drawing.Point(148, 322);
-            this.dateTimePicker_grupo_evento_data.Name = "dateTimePicker_grupo_evento_data";
-            this.dateTimePicker_grupo_evento_data.Size = new System.Drawing.Size(470, 29);
-            this.dateTimePicker_grupo_evento_data.TabIndex = 54;
+            this.button_grupo_evento_editar.Location = new System.Drawing.Point(186, 418);
+            this.button_grupo_evento_editar.Margin = new System.Windows.Forms.Padding(4);
+            this.button_grupo_evento_editar.Name = "button_grupo_evento_editar";
+            this.button_grupo_evento_editar.Size = new System.Drawing.Size(130, 45);
+            this.button_grupo_evento_editar.TabIndex = 39;
+            this.button_grupo_evento_editar.Text = "Editar";
+            this.button_grupo_evento_editar.UseVisualStyleBackColor = true;
+            this.button_grupo_evento_editar.Click += new System.EventHandler(this.button_grupo_evento_editar_Click);
             // 
-            // textBox_grupo_evento_local
+            // listBox_grupo_eventos
             // 
-            this.textBox_grupo_evento_local.Enabled = false;
-            this.textBox_grupo_evento_local.Location = new System.Drawing.Point(148, 358);
-            this.textBox_grupo_evento_local.Name = "textBox_grupo_evento_local";
-            this.textBox_grupo_evento_local.Size = new System.Drawing.Size(470, 29);
-            this.textBox_grupo_evento_local.TabIndex = 55;
+            this.listBox_grupo_eventos.FormattingEnabled = true;
+            this.listBox_grupo_eventos.ItemHeight = 24;
+            this.listBox_grupo_eventos.Location = new System.Drawing.Point(33, 26);
+            this.listBox_grupo_eventos.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.listBox_grupo_eventos.Name = "listBox_grupo_eventos";
+            this.listBox_grupo_eventos.Size = new System.Drawing.Size(591, 148);
+            this.listBox_grupo_eventos.TabIndex = 14;
+            this.listBox_grupo_eventos.SelectedIndexChanged += new System.EventHandler(this.listBox_grupo_eventos_SelectedIndexChanged);
+            // 
+            // tab_historial
+            // 
+            this.tab_historial.Controls.Add(this.button_grupo_historial_editar);
+            this.tab_historial.Controls.Add(this.button_grupo_historial_eliminar);
+            this.tab_historial.Controls.Add(this.textBox_grupo_historial);
+            this.tab_historial.Location = new System.Drawing.Point(4, 33);
+            this.tab_historial.Name = "tab_historial";
+            this.tab_historial.Padding = new System.Windows.Forms.Padding(3);
+            this.tab_historial.Size = new System.Drawing.Size(657, 484);
+            this.tab_historial.TabIndex = 1;
+            this.tab_historial.Text = "Historial";
+            this.tab_historial.UseVisualStyleBackColor = true;
+            // 
+            // button_grupo_historial_editar
+            // 
+            this.button_grupo_historial_editar.Location = new System.Drawing.Point(122, 414);
+            this.button_grupo_historial_editar.Margin = new System.Windows.Forms.Padding(4);
+            this.button_grupo_historial_editar.Name = "button_grupo_historial_editar";
+            this.button_grupo_historial_editar.Size = new System.Drawing.Size(153, 45);
+            this.button_grupo_historial_editar.TabIndex = 45;
+            this.button_grupo_historial_editar.Text = "Editar";
+            this.button_grupo_historial_editar.UseVisualStyleBackColor = true;
+            this.button_grupo_historial_editar.Click += new System.EventHandler(this.button_grupo_historial_editar_Click);
+            // 
+            // button_grupo_historial_eliminar
+            // 
+            this.button_grupo_historial_eliminar.Location = new System.Drawing.Point(362, 414);
+            this.button_grupo_historial_eliminar.Margin = new System.Windows.Forms.Padding(4);
+            this.button_grupo_historial_eliminar.Name = "button_grupo_historial_eliminar";
+            this.button_grupo_historial_eliminar.Size = new System.Drawing.Size(169, 45);
+            this.button_grupo_historial_eliminar.TabIndex = 44;
+            this.button_grupo_historial_eliminar.Text = "Eliminar";
+            this.button_grupo_historial_eliminar.UseVisualStyleBackColor = true;
+            this.button_grupo_historial_eliminar.Click += new System.EventHandler(this.button_grupo_historial_eliminar_Click);
+            // 
+            // textBox_grupo_historial
+            // 
+            this.textBox_grupo_historial.Location = new System.Drawing.Point(44, 36);
+            this.textBox_grupo_historial.Multiline = true;
+            this.textBox_grupo_historial.Name = "textBox_grupo_historial";
+            this.textBox_grupo_historial.Size = new System.Drawing.Size(575, 345);
+            this.textBox_grupo_historial.TabIndex = 0;
             // 
             // Form_area_pessoal
             // 
@@ -484,7 +511,6 @@
             this.ClientSize = new System.Drawing.Size(1106, 608);
             this.Controls.Add(this.tabControl);
             this.Controls.Add(this.button_refresh);
-            this.Controls.Add(this.button_editar_username);
             this.Controls.Add(this.label_username);
             this.Controls.Add(this.label);
             this.Controls.Add(this.button_logout);
@@ -504,6 +530,8 @@
             this.tab_informacao.PerformLayout();
             this.tab_eventos.ResumeLayout(false);
             this.tab_eventos.PerformLayout();
+            this.tab_historial.ResumeLayout(false);
+            this.tab_historial.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -515,7 +543,6 @@
         private System.Windows.Forms.Button button_logout;
         private System.Windows.Forms.Label label;
         private System.Windows.Forms.Label label_username;
-        private System.Windows.Forms.Button button_editar_username;
         private System.Windows.Forms.Button button_refresh;
         private System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tab_informacao;
@@ -548,5 +575,8 @@
         private System.Windows.Forms.TextBox textBox_grupo_evento_nome;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button button_grupo_historial_editar;
+        private System.Windows.Forms.Button button_grupo_historial_eliminar;
+        private System.Windows.Forms.TextBox textBox_grupo_historial;
     }
 }
